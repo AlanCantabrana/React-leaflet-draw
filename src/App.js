@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import { MapContainer, ImageOverlay } from 'react-leaflet'
+import L from 'leaflet'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const bounds = [
+        [0, 0],
+        [5400, 7200],
+    ]
+    const style = { height: '80vh', width: '75vw' }
+
+    return (
+        <div className="App">
+            <MapContainer
+                crs={L.CRS.Simple}
+                minZoom={-4}
+                bounds={bounds}
+                style={style}
+            >
+                <ImageOverlay
+                    url="http://localhost:3000/COA1.jpeg"
+                    bounds={bounds}
+                    zIndex={10}
+                />
+            </MapContainer>
+        </div>
+    )
 }
 
-export default App;
+export default App
